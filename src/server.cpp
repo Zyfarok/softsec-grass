@@ -768,6 +768,11 @@ void handle_input(const char *command, const int sock)
 
     if (tokens[0] != shell_cmds[2].name)
     {
+        if (input.find_first_of("`$") != std::string::npos)
+        {
+            write_message(sock, ERR_UNDEFINED_CHARS);
+            return;
+        }
         p.we_wordc = 0;
         wordexp(command, &p, 0);
     }
