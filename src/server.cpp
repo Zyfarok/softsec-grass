@@ -276,7 +276,6 @@ int do_cd(const string &name, const int sock)
             strcat(buff, name.c_str());
             strcat(buff, ": No such file or directory\n");
             write_message(sock, buff);
-            printf(buff);
         }
     }
     return 0;
