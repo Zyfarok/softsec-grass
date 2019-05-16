@@ -172,7 +172,7 @@ int do_logout(const string &, const int sock)
 int do_ping(const string &name, const int sock)
 {
     // validate argument
-    if (name.find_first_not_of("0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM.- ") != std::string::npos) { 
+    if (name.find_first_not_of("0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM.- ") != std::string::npos)
     {
         write_message(sock, ERR_WRONG_PARAM);
         return 1;
@@ -284,8 +284,6 @@ int do_cd(const string &name, const int sock)
 
 int do_mkdir(const string &name, const int sock)
 {
-    char buff[20];
-
     // check if the user is allowed to execute the command
     if (!check_authentication(sock))
     {
@@ -293,9 +291,6 @@ int do_mkdir(const string &name, const int sock)
         write_message(sock, ERR_ACCESS_DENIED);
         return 1;
     }
-
-    char dirname[512];
-    strcpy(dirname, name.c_str());
 
     // check path length
     if (name.length() > PATH_MAX)
@@ -324,9 +319,6 @@ int do_mkdir(const string &name, const int sock)
         if (pos != string::npos)
         {
             parent_path = parent_path.substr(0, pos).c_str();
-
-            printf("%d %s\n", strlen(parent_path.c_str()), parent_path.c_str());
-            strcpy(buff, parent_path.c_str());
 
             // check permission of path
             if (strstr(realpath(parent_path.c_str(), NULL), curr_dir.c_str()) == NULL)
@@ -764,13 +756,8 @@ void handle_input(const char *command, const int sock)
     vector<string> tokens{istream_iterator<string>(buffer), istream_iterator<string>()};
 
     wordexp_t p;
-    p.we_wordc = 2;
-
-    if (tokens[0] != shell_cmds[2].name)
-    {
-        p.we_wordc = 0;
-        wordexp(command, &p, 0);
-    }
+    p.we_wordc = 0;
+    wordexp(command, &p, 0);
 
     if (tokens.size() == 0)
     {
