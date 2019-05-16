@@ -172,7 +172,7 @@ int do_logout(const string &, const int sock)
 int do_ping(const string &name, const int sock)
 {
     // validate argument
-    if (name.find_first_of("&|/,") != std::string::npos)
+    if (name.find_first_not_of("0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM.- ") != std::string::npos) { 
     {
         write_message(sock, ERR_WRONG_PARAM);
         return 1;
