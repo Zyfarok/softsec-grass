@@ -226,10 +226,10 @@ int do_date(const string &, const int sock)
 
 int do_cd(const string &name, const int sock)
 {
-    wordexp_t p;
-    wordexp(name.c_str(), &p, 0);
+    // wordexp_t p;
+    // wordexp(name.c_str(), &p, 0);
 
-    string folderName = string(p.we_wordv[0]);
+    string folderName = name;//string(p.we_wordv[0]);
 
     // check if the user is allowed to execute the command
     if (!check_authentication(sock))
