@@ -227,7 +227,7 @@ int do_date(const string &, const int sock)
 int do_cd(const string &name, const int sock)
 {
     // wordexp_t p;
-    // wordexp(name.c_str(), &p, 0);
+    // wordexp(name.c_str(), &p, WRDE_NOCMD);
 
     string folderName = name;//string(p.we_wordv[0]);
 
@@ -754,14 +754,9 @@ void handle_input(const char *command, const int sock)
 
     vector<string> tokens{istream_iterator<string>(buffer), istream_iterator<string>()};
 
-    if (input.find_first_of("`$") != std::string::npos)
-    {
-        write_message(sock, ERR_UNDEFINED_CHARS);
-        return;
-    }
     wordexp_t p;
     p.we_wordc = 0;
-    wordexp(command, &p, 0);
+    wordexp(command, &p, WRDE_NOCMD);
 
     if (tokens.size() == 0)
     {
