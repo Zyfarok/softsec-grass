@@ -5,5 +5,7 @@ Team members :
 - Clément Burgelin ([Zyfarok](https://github.com/Zyfarok), 249954)
 - Mathieu Ducroux ([vood00child](https://github.com/vood00child), 273839)
 
-Zip password :
+Old zip password :
 `2yC34*t7#1^F&Vpl`
+
+The new zip was sent to all the TAs by email.
