@@ -8,4 +8,4 @@ Team members :
 Old zip password :
 `2yC34*t7#1^F&Vpl`
 
-The new zip was sent to all the TAs by email.
+The new zip was sent to all the TAs by email (no password required).
